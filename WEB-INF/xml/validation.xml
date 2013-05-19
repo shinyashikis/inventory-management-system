@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+	<formset>
+		<!-- ログイン -->
+		<form name="LoginForm">
+			<field property="user" depends="required,mask">
+				<arg key="LOGIN.LABEL.USER" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="pswd" depends="required,mask">
+				<arg key="LOGIN.LABEL.PSWD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+		</form>
+
+		<!-- 基本設定 -->
+		<form name="BasicForm">
+			<field property="name" depends="required">
+				<arg key="BASIC.LABEL.CAMPANY" resource="true"/>
+			</field>
+			<field property="postCode1" depends="required,mask">
+				<arg key="BASIC.LABEL.POSTCODE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="postCode2" depends="required,mask">
+				<arg key="BASIC.LABEL.POSTCODE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="addr1" depends="required">
+				<arg key="BASIC.LABEL.ADDR1" resource="true"/>
+			</field>
+			<field property="addr2" depends="required">
+				<arg key="BASIC.LABEL.ADDR2" resource="true"/>
+			</field>
+			<field property="tel" depends="required,mask">
+				<arg key="BASIC.LABEL.TEL" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="fax" depends="required,mask">
+				<arg key="BASIC.LABEL.FAX" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="bank" depends="required">
+				<arg key="BASIC.LABEL.BANK" resource="true"/>
+			</field>
+			<field property="branch" depends="required">
+				<arg key="BASIC.LABEL.BRANCH" resource="true"/>
+			</field>
+			<field property="accountNo" depends="required,mask">
+				<arg key="BASIC.LABEL.ACCOUNT_NO" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="accountName" depends="required">
+				<arg key="BASIC.LABEL.ACCOUNT_NAME" resource="true"/>
+			</field>
+			<field property="taxVal" depends="mask">
+				<arg key="BASIC.LABEL.TAXVAL" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+				</var>
+			</field>
+		</form>
+
+		<!-- 担当者登録 -->
+		<form name="StaffForm">
+			<field property="code" depends="required,mask">
+				<arg key="STAFF_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="sei" depends="required">
+				<arg key="STAFF_UPDATE.LABEL.SEI" resource="true"/>
+			</field>
+			<field property="name" depends="required">
+				<arg key="STAFF_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+			<field property="seiKana" depends="required">
+				<arg key="STAFF_UPDATE.LABEL.SEI_KANA" resource="true"/>
+			</field>
+			<field property="nameKana" depends="required">
+				<arg key="STAFF_UPDATE.LABEL.NAME_KANA" resource="true"/>
+			</field>
+			<field property="busyo" depends="required">
+				<arg key="STAFF_UPDATE.LABEL.BUSYO" resource="true"/>
+			</field>
+		</form>
+
+		<!-- 商品登録 -->
+		<form name="ItemForm">
+			<field property="code" depends="required,mask">
+				<arg key="ITEM_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="name" depends="required">
+				<arg key="ITEM_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+			<field property="properStock" depends="required,mask">
+				<arg key="ITEM_UPDATE.LABEL.PROPER_STOCK" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="kisyuStock" depends="required,mask">
+				<arg key="ITEM_UPDATE.LABEL.KISYU_STOCK" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="kicyuStockUpDown" depends="required,mask">
+				<arg key="ITEM_UPDATE.LABEL.KICYU_STOCK_UPDOWN" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="price" depends="required,mask">
+				<arg key="ITEM_UPDATE.LABEL.PRICE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="kisyuPrice" depends="mask">
+				<arg key="ITEM_UPDATE.LABEL.KISYU_PRICE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="standardPrice" depends="required,mask">
+				<arg key="ITEM_UPDATE.LABEL.STANDARD_PRICE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="sellingPrice2" depends="mask">
+				<arg key="ITEM_UPDATE.LABEL.SELLING_PRICE2" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="sellingPrice3" depends="mask">
+				<arg key="ITEM_UPDATE.LABEL.SELLING_PRICE3" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="sellingPrice4" depends="mask">
+				<arg key="ITEM_UPDATE.LABEL.SELLING_PRICE4" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="sellingPrice5" depends="mask">
+				<arg key="ITEM_UPDATE.LABEL.SELLING_PRICE5" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<!--
+					<var-value>^[0-9]*$|^[0-9]+\.+[0-9]+$</var-value>
+					-->
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+		</form>
+
+		<!-- 商品分類登録 -->
+		<form name="ItemClassForm">
+			<field property="code" depends="required,mask">
+				<arg key="ITEM_CLASS_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="name" depends="required">
+				<arg key="ITEM_CLASS_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+		</form>
+
+		<!-- 得意先登録 -->
+		<form name="CustomerForm">
+			<field property="code" depends="required,mask">
+				<arg key="CUSTOMER_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="name" depends="required">
+				<arg key="CUSTOMER_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+			<field property="postCode1" depends="mask">
+				<arg key="CUSTOMER_UPDATE.LABEL.POSTCODE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="postCode2" depends="mask">
+				<arg key="CUSTOMER_UPDATE.LABEL.POSTCODE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="tel" depends="mask">
+				<arg key="CUSTOMER_UPDATE.LABEL.TEL" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="fax" depends="mask">
+				<arg key="CUSTOMER_UPDATE.LABEL.FAX" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="kisyuBalance" depends="mask">
+				<arg key="CUSTOMER_UPDATE.LABEL.KISYU_BALANCE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+		</form>
+
+		<!-- 得意先分類登録 -->
+		<form name="CustomerClassForm">
+			<field property="code" depends="required,mask">
+				<arg key="CUSTOMER_CLASS_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="name" depends="required">
+				<arg key="CUSTOMER_CLASS_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+		</form>
+
+		<!-- 仕入先登録 -->
+		<form name="SupplierForm">
+			<field property="code" depends="required,mask">
+				<arg key="SUPPLIER_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[a-zA-Z0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="name" depends="required">
+				<arg key="SUPPLIER_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+			<field property="postCode1" depends="mask">
+				<arg key="SUPPLIER_UPDATE.LABEL.POSTCODE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="postCode2" depends="mask">
+				<arg key="SUPPLIER_UPDATE.LABEL.POSTCODE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="tel" depends="mask">
+				<arg key="SUPPLIER_UPDATE.LABEL.TEL" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="fax" depends="mask">
+				<arg key="SUPPLIER_UPDATE.LABEL.FAX" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="kisyuBalance" depends="mask">
+				<arg key="SUPPLIER_UPDATE.LABEL.KISYU_BALANCE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+		</form>
+
+		<!-- 仕入先分類登録 -->
+		<form name="SupplierClassForm">
+			<field property="code" depends="required,mask">
+				<arg key="SUPPLIER_CLASS_UPDATE.LABEL.CD" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+			<field property="name" depends="required">
+				<arg key="SUPPLIER_CLASS_UPDATE.LABEL.NAME" resource="true"/>
+			</field>
+		</form>
+
+		<!-- 伝票入力 -->
+		<form name="VoucherForm">
+			<field property="voucherBean.voucherDate" depends="required">
+				<arg key="QUOTATION_INPUT.LABEL.VOUCHER_DATE" resource="true"/>
+			</field>
+			<field property="voucherBean.dealBean.dealCode" depends="required">
+				<arg key="QUOTATION_INPUT.LABEL.DEAL_CD" resource="true"/>
+			</field>
+			<field property="voucherBean.voucherDate" depends="mask">
+				<arg key="QUOTATION_INPUT.LABEL.VOUCHER_DATE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>[0-9]{8}</var-value>
+				</var>
+			</field>
+			<field property="voucherBean.receiptNo" depends="mask">
+				<arg key="QUOTATION_INPUT.LABEL.RECEIPT_NO" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9]*$</var-value>
+				</var>
+			</field>
+		</form>
+
+		<!-- 請求書入力 -->
+		<form name="BillForm">
+			<field property="voucherDate" depends="required">
+				<arg key="QUOTATION_INPUT.LABEL.VOUCHER_DATE" resource="true"/>
+			</field>
+			<field property="voucherDate" depends="mask">
+				<arg key="QUOTATION_INPUT.LABEL.VOUCHER_DATE" resource="true"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>[0-9]{8}</var-value>
+				</var>
+			</field>
+		</form>
+	</formset>
+</form-validation>

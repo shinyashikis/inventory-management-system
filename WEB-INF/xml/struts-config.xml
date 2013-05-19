@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<!-- ================================================ Form Bean Definitions -->
+    <form-beans>
+
+	<!-- ログイン -->
+	<form-bean name="LoginForm" type="login.LoginForm" />
+	<!-- ログアウト -->
+	<form-bean name="LogoutForm" type="logout.LogoutForm" />
+	<!-- メニュー -->
+	<form-bean name="MenuForm" type="menu.MenuForm" />
+
+
+	<!-- 登録／設定 -->
+	<!-- 基本設定 -->
+	<form-bean name="BasicForm" type="master.basic.BasicForm" />
+	<!-- 担当者一覧 -->
+	<form-bean name="StaffListForm" type="master.staff.StaffListForm" />
+	<!-- 担当者登録 -->
+	<form-bean name="StaffForm" type="master.staff.StaffForm" />
+	<!-- 商品一覧 -->
+	<form-bean name="ItemListForm" type="master.item.ItemListForm" />
+	<!-- 商品登録 -->
+	<form-bean name="ItemForm" type="master.item.ItemForm" />
+	<!-- 商品分類一覧 -->
+	<form-bean name="ItemClassListForm" type="master.item.ItemClassListForm" />
+	<!-- 商品分類登録 -->
+	<form-bean name="ItemClassForm" type="master.item.ItemClassForm" />
+	<!-- 得意先一覧 -->
+	<form-bean name="CustomerListForm" type="master.customer.CustomerListForm" />
+	<!-- 得意先登録 -->
+	<form-bean name="CustomerForm" type="master.customer.CustomerForm" />
+	<!-- 得意先分類一覧 -->
+	<form-bean name="CustomerClassListForm" type="master.customer.CustomerClassListForm" />
+	<!-- 得意先分類登録 -->
+	<form-bean name="CustomerClassForm" type="master.customer.CustomerClassForm" />
+	<!-- 仕入先一覧 -->
+	<form-bean name="SupplierListForm" type="master.supplier.SupplierListForm" />
+	<!-- 仕入先登録 -->
+	<form-bean name="SupplierForm" type="master.supplier.SupplierForm" />
+	<!-- 仕入先分類一覧 -->
+	<form-bean name="SupplierClassListForm" type="master.supplier.SupplierClassListForm" />
+	<!-- 仕入先分類登録 -->
+	<form-bean name="SupplierClassForm" type="master.supplier.SupplierClassForm" />
+
+
+	<!-- 伝票／印刷 -->
+	<!-- 見積一覧 -->
+	<form-bean name="QuotationListForm" type="voucher.quotation.QuotationListForm" />
+	<!-- 見積入力 -->
+	<form-bean name="QuotationForm" type="voucher.quotation.QuotationForm" />
+	<!-- 注文一覧 -->
+	<form-bean name="OrderListForm" type="voucher.order.OrderListForm" />
+	<!-- 注文入力 -->
+	<form-bean name="OrderForm" type="voucher.order.OrderForm" />
+	<!-- 売上伝票一覧 -->
+	<form-bean name="SalesListForm" type="voucher.sales.SalesListForm" />
+	<!-- 売上伝票入力 -->
+	<form-bean name="SalesForm" type="voucher.sales.SalesForm" />
+	<!-- 仕入伝票一覧 -->
+	<form-bean name="PurchaseListForm" type="voucher.purchase.PurchaseListForm" />
+	<!-- 仕入伝票入力 -->
+	<form-bean name="PurchaseForm" type="voucher.purchase.PurchaseForm" />
+	<!-- 請求書一覧 -->
+	<form-bean name="BillListForm" type="voucher.bill.BillListForm" />
+	<!-- 請求書入力 -->
+	<form-bean name="BillForm" type="voucher.bill.BillForm" />
+
+	<!-- (伝票)得意先一覧 -->
+	<form-bean name="VoucherCustomerListForm" type="voucher.common.dialog.VoucherCustomerListForm" />
+	<!-- (伝票)仕入先一覧 -->
+	<form-bean name="VoucherSupplierListForm" type="voucher.common.dialog.VoucherSupplierListForm" />
+	<!-- (伝票)商品一覧 -->
+	<form-bean name="VoucherItemListForm" type="voucher.common.dialog.VoucherItemListForm" />
+	<!-- (伝票)(請求書)得意先一覧 -->
+	<form-bean name="BillCustomerListForm" type="voucher.bill.dialog.BillCustomerListForm" />
+
+
+	<!-- 帳簿 -->
+	<!-- 商品情報 -->
+	<form-bean name="BookItemForm" type="book.item.BookItemForm" />
+	<!-- 売上情報 -->
+	<form-bean name="BookSalesForm" type="book.sales.BookSalesForm" />
+	<!-- 仕入情報 -->
+	<form-bean name="BookPurchaseForm" type="book.purchase.BookPurchaseForm" />
+	<!-- 伝票一覧表 -->
+	<form-bean name="BookVoucherListForm" type="book.voucher.BookVoucherListForm" />
+
+    </form-beans>
+
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+		<exception
+			key="COMMON.ERRMSG.REQUEST_INVALID"
+			type="fw.core.error.RequestInvalidException"
+			handler="fw.core.error.CommonErrorHandler"
+			path="/WEB-INF/jsp/error.jsp" />
+		<exception
+			key="COMMON.ERRMSG.SQL"
+			type="java.sql.SQLException"
+			handler="fw.core.error.CommonErrorHandler"
+			path="/WEB-INF/jsp/error.jsp" />
+		<exception
+			key="COMMON.ERRMSG.SYSTEM"
+			type="java.lang.RuntimeException"
+			handler="fw.core.error.CommonErrorHandler"
+			path="/WEB-INF/jsp/error.jsp" />
+		<exception
+			key="COMMON.ERRMSG.SYSTEM"
+			type="java.lang.Exception"
+			handler="fw.core.error.CommonErrorHandler"
+			path="/WEB-INF/jsp/error.jsp" />
+    </global-exceptions>
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+    	<forward name="common_error" path="/WEB-INF/jsp/error.jsp"/>
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+    	<!-- ログイン -->
+		<action path="/LoginAction"
+			type="login.LoginAction"
+		    name="LoginForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/login.jsp"
+		    parameter="login,default=init">
+	    	<forward name="init" path="/WEB-INF/jsp/login.jsp" />
+	    	<forward name="login" path="/WEB-INF/jsp/menu.jsp" />
+	   		<forward name="error" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+
+    	<!-- ログアウト -->
+		<action path="/LogoutAction"
+			type="logout.LogoutAction"
+		    name="LogoutForm">
+	    	<forward name="logout" path="/WEB-INF/jsp/login.jsp" />
+		</action>
+
+    	<!-- メニュー -->
+		<action path="/MenuAction/*"
+			type="menu.MenuAction"
+		    name="MenuForm"
+		    parameter="default={1}">
+	    	<forward name="basic" path="/WEB-INF/jsp/master/basic.jsp" />
+	    	<forward name="staff" path="/WEB-INF/jsp/master/staff_list.jsp" />
+	    	<forward name="item" path="/WEB-INF/jsp/master/item_list.jsp" />
+	    	<forward name="customer" path="/WEB-INF/jsp/master/customer_list.jsp" />
+	    	<forward name="supplier" path="/WEB-INF/jsp/master/supplier_list.jsp" />
+			<forward name="quotation" path="/WEB-INF/jsp/voucher/quotation/quotation_list.jsp" />
+	    	<forward name="order" path="/WEB-INF/jsp/voucher/order/order_list.jsp" />
+	    	<forward name="sales" path="/WEB-INF/jsp/voucher/sales/sales_list.jsp" />
+	    	<forward name="purchase" path="/WEB-INF/jsp/voucher/purchase/purchase_list.jsp" />
+	    	<forward name="bill" path="/WEB-INF/jsp/voucher/bill/bill_list.jsp" />
+	    	<forward name="book_item" path="/WEB-INF/jsp/book/book_item.jsp" />
+	    	<forward name="book_sales" path="/WEB-INF/jsp/book/book_sales.jsp" />
+	    	<forward name="book_purchase" path="/WEB-INF/jsp/book/book_purchase.jsp" />
+	    	<forward name="book_voucher_list" path="/WEB-INF/jsp/book/book_voucher_list.jsp" />
+
+	    	<forward name="masterError" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+    	<!-- 登録／設定 -->
+    	<!-- 基本設定 -->
+		<action path="/BasicAction"
+			type="master.basic.BasicAction"
+		    name="BasicForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/basic.jsp"
+		    parameter="regist,back,default=invalideMethod">
+		    <set-property key="token" value="regist=check_save,back=check_save"/>
+	    	<forward name="regist" path="/WEB-INF/jsp/master/basic.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/basic.jsp" />
+		</action>
+
+    	<!-- 担当者一覧 -->
+		<action path="/StaffListAction"
+			type="master.staff.StaffListAction"
+		    name="StaffListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+	    	<forward name="add" path="/WEB-INF/jsp/master/staff_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/staff_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/staff_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 担当者登録 -->
+		<action path="/StaffUpdateAction"
+			type="master.staff.StaffUpdateAction"
+		    name="StaffForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/staff_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check_save,back=check_save"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/staff_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/staff_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/staff_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/staff_list.jsp" />
+		</action>
+
+		<!-- 商品一覧 -->
+		<action path="/ItemListAction"
+			type="master.item.ItemListAction"
+		    name="ItemListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+	    	<forward name="add" path="/WEB-INF/jsp/master/item_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/item_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/item_list.jsp" />
+	    	<forward name="deleteError" path="/WEB-INF/jsp/master/item_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 商品登録 -->
+		<action path="/ItemUpdateAction"
+			type="master.item.ItemUpdateAction"
+		    name="ItemForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/item_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check_save,back=check_save"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/item_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/item_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/item_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/item_list.jsp" />
+		</action>
+
+		<!-- 商品分類一覧 -->
+		<action path="/ItemClassListAction"
+			type="master.item.ItemClassListAction"
+		    name="ItemClassListForm"
+		    parameter="add,update,delete,default=init">
+		    <set-property key="token" value="add=check,update=check,delete=check,init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/master/item_class_list.jsp" />
+	    	<forward name="add" path="/WEB-INF/jsp/master/item_class_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/item_class_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/item_class_list.jsp" />
+	    	<forward name="fkError" path="/WEB-INF/jsp/master/item_class_list.jsp" />
+		</action>
+
+		<!-- 商品分類登録 -->
+		<action path="/ItemClassUpdateAction"
+			type="master.item.ItemClassUpdateAction"
+		    name="ItemClassForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/item_class_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check,back=check"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/item_class_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/item_class_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/item_class_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/item_class_list.jsp" />
+		</action>
+
+		<!-- 得意先一覧 -->
+		<action path="/CustomerListAction"
+			type="master.customer.CustomerListAction"
+		    name="CustomerListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+	    	<forward name="add" path="/WEB-INF/jsp/master/customer_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/customer_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/customer_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 得意先登録 -->
+		<action path="/CustomerUpdateAction"
+			type="master.customer.CustomerUpdateAction"
+		    name="CustomerForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/customer_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check_save,back=check_save"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/customer_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/customer_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/customer_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/customer_list.jsp" />
+		</action>
+
+		<!-- 得意先分類一覧 -->
+		<action path="/CustomerClassListAction"
+			type="master.customer.CustomerClassListAction"
+		    name="CustomerClassListForm"
+		    parameter="add,update,delete,default=init">
+		    <set-property key="token" value="add=check,update=check,delete=check,init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/master/customer_class_list.jsp" />
+	    	<forward name="add" path="/WEB-INF/jsp/master/customer_class_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/customer_class_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/customer_class_list.jsp" />
+	    	<forward name="fkError" path="/WEB-INF/jsp/master/customer_class_list.jsp" />
+		</action>
+
+		<!-- 得意先分類登録 -->
+		<action path="/CustomerClassUpdateAction"
+			type="master.customer.CustomerClassUpdateAction"
+		    name="CustomerClassForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/customer_class_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check,back=check"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/customer_class_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/customer_class_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/customer_class_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/customer_class_list.jsp" />
+		</action>
+
+		<!-- 仕入先一覧 -->
+		<action path="/SupplierListAction"
+			type="master.supplier.SupplierListAction"
+		    name="SupplierListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+	    	<forward name="add" path="/WEB-INF/jsp/master/supplier_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/supplier_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/supplier_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 仕入先登録 -->
+		<action path="/SupplierUpdateAction"
+			type="master.supplier.SupplierUpdateAction"
+		    name="SupplierForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/supplier_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check_save,back=check_save"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/supplier_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/supplier_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/supplier_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/supplier_list.jsp" />
+		</action>
+
+		<!-- 仕入先分類一覧 -->
+		<action path="/SupplierClassListAction"
+			type="master.supplier.SupplierClassListAction"
+		    name="SupplierClassListForm"
+		    parameter="add,update,delete,default=init">
+		    <set-property key="token" value="add=check,update=check,delete=check,init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/master/supplier_class_list.jsp" />
+	    	<forward name="add" path="/WEB-INF/jsp/master/supplier_class_update.jsp" />
+	    	<forward name="update" path="/WEB-INF/jsp/master/supplier_class_update.jsp" />
+	    	<forward name="delete" path="/WEB-INF/jsp/master/supplier_class_list.jsp" />
+	    	<forward name="fkError" path="/WEB-INF/jsp/master/supplier_class_list.jsp" />
+		</action>
+
+		<!-- 仕入先分類登録 -->
+		<action path="/SupplierClassUpdateAction"
+			type="master.supplier.SupplierClassUpdateAction"
+		    name="SupplierClassForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/master/supplier_class_update.jsp"
+		    parameter="update,back,default=invalideMethod">
+		    <set-property key="token" value="update=check,back=check"/>
+	    	<forward name="update" path="/WEB-INF/jsp/master/supplier_class_list.jsp" />
+	    	<forward name="back" path="/WEB-INF/jsp/master/supplier_class_list.jsp" />
+	    	<forward name="duplicateError" path="/WEB-INF/jsp/master/supplier_class_update.jsp" />
+	    	<forward name="lockError" path="/WEB-INF/jsp/master/supplier_class_list.jsp" />
+		</action>
+
+
+    	<!-- 印刷／伝票 -->
+
+		<!-- 見積書一覧 -->
+		<action path="/QuotationListAction"
+			type="voucher.quotation.QuotationListAction"
+		    name="QuotationListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="add" path="/WEB-INF/jsp/voucher/quotation/quotation_input.jsp" />
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/quotation/quotation_input.jsp" />
+		   	<forward name="delete" path="/WEB-INF/jsp/voucher/quotation/quotation_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 見積書入力 -->
+		<action path="/QuotationInputAction"
+			type="voucher.quotation.QuotationInputAction"
+		    name="QuotationForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/voucher/quotation/quotation_input.jsp"
+		    parameter="update,print,back,searchDeal,changeDeal,searchItem,deleteItem,redispDeal,redispDetail,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/quotation/quotation_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/voucher/quotation/quotation_list.jsp" />
+		   	<forward name="redisp" path="/WEB-INF/jsp/voucher/quotation/quotation_input.jsp" />
+		   	<forward name="lockError" path="/WEB-INF/jsp/voucher/quotation/quotation_list.jsp" />
+		</action>
+
+		<!-- 注文書一覧 -->
+		<action path="/OrderListAction"
+			type="voucher.order.OrderListAction"
+		    name="OrderListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="add" path="/WEB-INF/jsp/voucher/order/order_input.jsp" />
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/order/order_input.jsp" />
+		   	<forward name="delete" path="/WEB-INF/jsp/voucher/order/order_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 注文書入力 -->
+		<action path="/OrderInputAction"
+			type="voucher.order.OrderInputAction"
+		    name="OrderForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/voucher/order/order_input.jsp"
+		    parameter="update,print,back,searchDeal,searchItem,deleteItem,redispDeal,redispDetail,createPurchase,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/order/order_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/voucher/order/order_list.jsp" />
+		   	<forward name="redisp" path="/WEB-INF/jsp/voucher/order/order_input.jsp" />
+		   	<forward name="createPurchase" path="/WEB-INF/jsp/voucher/purchase/purchase_input.jsp" />
+		   	<forward name="lockError" path="/WEB-INF/jsp/voucher/order/order_list.jsp" />
+		</action>
+
+		<!-- 売上伝票一覧 -->
+		<action path="/SalesListAction"
+			type="voucher.sales.SalesListAction"
+		    name="SalesListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="add" path="/WEB-INF/jsp/voucher/sales/sales_input.jsp" />
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/sales/sales_input.jsp" />
+		   	<forward name="delete" path="/WEB-INF/jsp/voucher/sales/sales_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 売上伝票入力 -->
+		<action path="/SalesInputAction"
+			type="voucher.sales.SalesInputAction"
+		    name="SalesForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/voucher/sales/sales_input.jsp"
+		    parameter="update,print,back,searchDeal,searchItem,deleteItem,redispDeal,redispDetail,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/sales/sales_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/voucher/sales/sales_list.jsp" />
+		   	<forward name="redisp" path="/WEB-INF/jsp/voucher/sales/sales_input.jsp" />
+		   	<forward name="lockError" path="/WEB-INF/jsp/voucher/sales/sales_list.jsp" />
+		</action>
+
+		<!-- 仕入伝票一覧 -->
+		<action path="/PurchaseListAction"
+			type="voucher.purchase.PurchaseListAction"
+		    name="PurchaseListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="add" path="/WEB-INF/jsp/voucher/purchase/purchase_input.jsp" />
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/purchase/purchase_input.jsp" />
+		   	<forward name="delete" path="/WEB-INF/jsp/voucher/purchase/purchase_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 仕入伝票入力 -->
+		<action path="/PurchaseInputAction"
+			type="voucher.purchase.PurchaseInputAction"
+		    name="PurchaseForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/voucher/purchase/purchase_input.jsp"
+		    parameter="update,print,back,searchDeal,searchItem,deleteItem,redispDeal,redispDetail,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/purchase/purchase_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/voucher/purchase/purchase_list.jsp" />
+		   	<forward name="redisp" path="/WEB-INF/jsp/voucher/purchase/purchase_input.jsp" />
+		   	<forward name="lockError" path="/WEB-INF/jsp/voucher/purchase/purchase_list.jsp" />
+		</action>
+
+		<!-- 請求書一覧 -->
+		<action path="/BillListAction"
+			type="voucher.bill.BillListAction"
+		    name="BillListForm"
+		    parameter="add,update,delete,back,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="add" path="/WEB-INF/jsp/voucher/bill/bill_input.jsp" />
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/bill/bill_input.jsp" />
+		   	<forward name="delete" path="/WEB-INF/jsp/voucher/bill/bill_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 請求書入力 -->
+		<action path="/BillInputAction"
+			type="voucher.bill.BillInputAction"
+		    name="BillForm"
+		    validate="true"
+		    input="/WEB-INF/jsp/voucher/bill/bill_input.jsp"
+		    parameter="update,print,back,searchDeal,redispDeal,default=invalideMethod">
+		    <set-property key="token" value="add=check_save,update=check_save,delete=check_save,back=check_save"/>
+		   	<forward name="update" path="/WEB-INF/jsp/voucher/bill/bill_list.jsp" />
+		   	<forward name="back" path="/WEB-INF/jsp/voucher/bill/bill_list.jsp" />
+		   	<forward name="redisp" path="/WEB-INF/jsp/voucher/bill/bill_input.jsp" />
+		   	<forward name="lockError" path="/WEB-INF/jsp/voucher/bill/bill_list.jsp" />
+		</action>
+
+		<!-- (伝票)得意先一覧 -->
+		<action path="/VoucherCustomerListAction"
+			type="voucher.common.dialog.VoucherCustomerListAction"
+		    name="VoucherCustomerListForm"
+		    parameter="close,default=init">
+		    <set-property key="token" value="init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/voucher/common/voucher_customer_list.jsp" />
+		    <forward name="close" path="/WEB-INF/jsp/voucher/common/voucher_customer_list.jsp" />
+		</action>
+
+		<!-- (伝票)仕入先一覧 -->
+		<action path="/VoucherSupplierListAction"
+			type="voucher.common.dialog.VoucherSupplierListAction"
+		    name="VoucherSupplierListForm"
+		    parameter="close,default=init">
+		    <set-property key="token" value="init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/voucher/common/voucher_supplier_list.jsp" />
+		    <forward name="close" path="/WEB-INF/jsp/voucher/common/voucher_supplier_list.jsp" />
+		</action>
+
+		<!-- (伝票)商品一覧 -->
+		<action path="/VoucherItemListAction"
+			type="voucher.common.dialog.VoucherItemListAction"
+		    name="VoucherItemListForm"
+		    parameter="close,default=init">
+		    <set-property key="token" value="init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/voucher/common/voucher_item_list.jsp" />
+		    <forward name="close" path="/WEB-INF/jsp/voucher/common/voucher_item_list.jsp" />
+		</action>
+
+		<!-- (伝票)(請求書)得意先一覧 -->
+		<action path="/BillCustomerListAction"
+			type="voucher.bill.dialog.BillCustomerListAction"
+		    name="BillCustomerListForm"
+		    parameter="close,default=init">
+		    <set-property key="token" value="init=check"/>
+		    <forward name="init" path="/WEB-INF/jsp/voucher/bill/dialog/bill_customer_list.jsp" />
+		    <forward name="close" path="/WEB-INF/jsp/voucher/bill/dialog/bill_customer_list.jsp" />
+		</action>
+
+    	<!-- 帳簿 -->
+    	<!-- 商品情報 -->
+		<action path="/BookItemDispAction"
+			type="book.item.BookItemDispAction"
+		    name="BookItemForm"
+		    parameter="disp,back,default=invalideMethod">
+		    <set-property key="token" value="back=check_save"/>
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 売上情報 -->
+		<action path="/BookSalesDispAction"
+			type="book.sales.BookSalesDispAction"
+		    name="BookSalesForm"
+		    parameter="disp,back,default=invalideMethod">
+		    <set-property key="token" value="back=check_save"/>
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 仕入情報 -->
+		<action path="/BookPurchaseDispAction"
+			type="book.purchase.BookPurchaseDispAction"
+		    name="BookPurchaseForm"
+		    parameter="disp,back,default=invalideMethod">
+		    <set-property key="token" value="back=check_save"/>
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+		<!-- 伝票一覧表 -->
+		<action path="/BookVoucherListDispAction"
+			type="book.voucher.BookVoucherListDispAction"
+		    name="BookVoucherListForm"
+		    parameter="disp,back,default=invalideMethod">
+		    <set-property key="token" value="back=check_save"/>
+	    	<forward name="back" path="/WEB-INF/jsp/menu.jsp" />
+		</action>
+
+    </action-mappings>
+
+	<controller processorClass="fw.core.base.CommonRequestProcessor"></controller>
+
+<!-- ======================================== Message Resources Definitions -->
+
+	<message-resources parameter="ComMsgResources" key="com"/>
+    <message-resources parameter="ApplicationResources" />
+
+<!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/org/apache/struts/validator/validator-rules.xml,
+               /WEB-INF/xml/validation.xml"/>
+  </plug-in>
+
+</struts-config>
+

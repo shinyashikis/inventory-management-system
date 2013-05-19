@@ -1,0 +1,95 @@
+@CHARSET "windows-31j";
+
+/* ヘッダ */
+.header{
+	font-size :12.5px;
+	color: gray;
+}
+
+/* フッタ */
+.footer{
+	font-size :12.5px;
+	color: gray;
+}
+
+/* ボディ */
+body{
+	font-size :12.5px;
+	color: gray;
+}
+
+/* メッセージ */
+.msg{
+	font-size :12.5px;
+	color: gray;
+}
+
+/* エラーメッセージ */
+.errmsg{
+	font-size :12.5px;
+	color: red;
+}
+
+/* リンク */
+a:LINK{
+	font-size:12.5px;
+	color:gray;
+}
+a:VISITED{
+	font-size:12.5px;
+	color:gray:
+}
+a:HOVER{
+	font-size:12.5px;
+	color: orange;
+}
+a:ACTIVE{
+	font-size:12.5px;
+	color: gray;
+}
+
+/* パンくずリスト */
+.breadcrumbList{
+	font-size :12.5px;
+	color: gray;
+}
+
+/** テーブル */
+.table01 {
+	border-collapse: collapse;
+}
+.table02 {
+	border: 1px #F5F5F5 solid;
+	border-collapse: collapse;
+}
+
+/** テーブルデータ */
+.td01 {
+	font-size :12.5px;
+	border: 1px #F5F5F5 solid;
+	background-color: #F0F8FF;
+	width:100px;
+	height:30px;
+}
+.td02 {
+	font-size :12.5px;
+	border: 1px #F5F5F5 solid;
+}
+
+/** テーブルヘッダ */
+.th01 {
+	font-size :12.5px;
+	border: 1px #F5F5F5 solid;
+	font: normal;
+	background-color: #F0F8FF;
+}
+.th02 {
+	font-size :12.5px;
+	border: 1px #F5F5F5 solid;
+	font: normal;
+}
+
+/** ラベルデータ */
+.lbl01 {
+	font-size :12.5px;
+}
